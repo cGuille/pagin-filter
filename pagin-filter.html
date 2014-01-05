@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>pagin-filter</title>
+
+    <link href="styles/kna.css" rel="stylesheet" media="screen" />
+    <link href="styles/pagin-filter.css" rel="stylesheet" media="screen" />
+  </head>
+  <body class="not-ready">
+    <div id="wrapper" class="w80 center mtl">
+      <div>
+        <datalist id="datalist-feed" data-bind="foreach: datalistFeed">
+          <option data-bind="value: $data" />
+        </datalist>
+        <label for="enable-autosuggest">autosuggest</label>
+        <input type="checkbox" id="enable-autosuggest" data-bind="checked: enableAutosuggest" />
+         
+        <label for="max-rows-input">Maximum number of rows:</label>
+        <input id="max-rows-input" type="number" min="1" data-bind="value: maxRows" />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <td>First name</td>
+            <td>Last name</td>
+          </tr>
+          <tr>
+            <td colspan="2" class="filter-row">
+              <input type="text" placeholder="type your filter here…" data-bind="value: filterInput, valueUpdate: 'keyup', attr: { list: datalistSource }" />
+              <button data-bind="click: filterInput('')">×</button>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- ko ifnot: data().length -->
+          <tr><td colspan="2">No data</td></tr>
+        <!-- /ko -->
+        <!-- ko if: data().length !== 0 && filteredData.length !==0 -->
+          <tr><td colspan="2">No data matched your criteria</td></tr>
+        <!-- /ko -->
+        <!-- ko foreach: currentPageData -->
+          <tr>
+            <td data-bind="text: $data.firstName"></td>
+            <td data-bind="text: $data.lastName"></td>
+          </tr>
+        <!-- /ko -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2">
+              <label for="page-input">Page:</label>
+              <input id="page-input" type="number" min="1" data-bind="value: page, attr { max: nbPages }" />
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <script type="text/javascript" src="js/libs/jquery.js"></script>
+    <script type="text/javascript" src="js/libs/underscore.js"></script>
+    <script type="text/javascript" src="js/libs/knockout.js"></script>
+
+    <script type="text/javascript" src="js/pagin-filter.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>

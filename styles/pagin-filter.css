@@ -1,0 +1,23 @@
+.not-ready {
+    visibility: hidden;
+}
+
+#filter-wrapper {
+    display: inline-block;
+}
+
+.filter-row {
+    text-align: center;
+}
+.filter-row > input {
+    display: inline-block;
+    width: 90%;
+}
+
+tfoot td {
+    text-align: center;
+}
+
+label {
+    margin: 0;
+}
